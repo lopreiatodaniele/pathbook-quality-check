@@ -3,7 +3,7 @@ export type Receipt = Booking & { id: string };
 export class BookingInputError extends Error {
   constructor(message: string, public field: "title" | "seats") { super(message); }
 }
-export function validSeats(value: unknown): value is number { return typeof value === "number" && Number.isInteger(value) && value >= 1 && value <= 3; }
+export function validSeats(value: unknown): value is number { return typeof value === "number" && Number.isInteger(value) && value >= 1 && value < 3; }
 export function booking(title: unknown, seats: unknown): Booking {
   if (typeof title !== "string" || title.trim().length < 2 || title.trim().length > 40) throw new BookingInputError("Use a workshop title of 2–40 characters after trimming.", "title");
   if (!validSeats(seats)) throw new BookingInputError("Request 1–3 whole seats.", "seats");
