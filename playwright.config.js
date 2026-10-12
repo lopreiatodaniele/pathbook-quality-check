@@ -1,0 +1,2 @@
+import { defineConfig } from "@playwright/test";
+export default defineConfig({ testDir: "tests", testMatch: "browser.spec.js", retries: 0, workers: 1, reporter: [["list"], ["html", { open: "never" }]], use: { baseURL: "http://127.0.0.1:4230", trace: "retain-on-failure", screenshot: "only-on-failure" }, projects: [{ name: "desktop", use: { viewport: { width: 1280, height: 900 } } }, { name: "narrow", use: { viewport: { width: 390, height: 844 } } }], webServer: { command: "bun scripts/dev.mjs", url: "http://127.0.0.1:4230", reuseExistingServer: false, timeout: 30000 } });
